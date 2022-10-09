@@ -1,0 +1,106 @@
+{
+    "vm":[
+        {
+            "id": 1,
+            "name": "vm 01",
+            "cpu": 10,
+            "ram": 20
+        },
+        {
+            "id": 2,
+            "name": "vm 02",
+            "cpu": 4,
+            "ram": 8
+        },
+        {
+            "id": 3,
+            "name": "vm 03 ",
+            "cpu": 8,
+            "ram": 16
+        }
+       
+    ],
+    "workspace":
+        {
+            "id": 1,
+            "name": "workspace 01"
+          
+        },
+    "users": 
+    [{
+        "id": 1,
+        "first_name": "Sibby",
+        "email": "sgibling0@discuz.net",
+        "ip_address": "244.57.112.24"
+      }, {
+        "id": 2,
+        "first_name": "Dottie",
+        "email": "dmacgillivray1@omniture.com",
+        "ip_address": "20.38.247.218"
+      }, {
+        "id": 3,
+        "first_name": "Margarethe",
+        "email": "mmeade2@house.gov",
+        "ip_address": "38.118.156.224"
+      }, {
+        "id": 4,
+        "first_name": "Lawry",
+        "email": "lsoans3@japanpost.jp",
+        "ip_address": "160.214.92.167"
+      }, {
+        "id": 5,
+        "first_name": "Nannie",
+        "email": "nmcniven4@twitter.com",
+        "ip_address": "243.147.122.102"
+      }, {
+        "id": 6,
+        "first_name": "Penelope",
+        "email": "ploker5@nba.com",
+        "ip_address": "99.119.99.140"
+      }, {
+        "id": 7,
+        "first_name": "Karmen",
+        "email": "kjesson6@wikipedia.org",
+        "ip_address": "82.154.20.198"
+      }, {
+        "id": 8,
+        "first_name": "Bealle",
+        "email": "broddy7@imageshack.us",
+        "ip_address": "60.225.192.219"
+      }, {
+        "id": 9,
+        "first_name": "Carmine",
+        "email": "cgillibrand8@surveymonkey.com",
+        "ip_address": "73.178.145.64"
+      }, {
+        "id": 10,
+        "first_name": "Douglas",
+        "email": "dpepineaux9@free.fr",
+        "ip_address": "230.126.174.218"
+      }, {
+        "id": 11,
+        "first_name": "Ignacius",
+        "email": "iabrahamssona@joomla.org",
+        "ip_address": "27.11.238.225"
+      }, {
+        "id": 12,
+        "first_name": "Janene",
+        "email": "jdustingb@washingtonpost.com",
+        "ip_address": "29.48.0.22"
+      }, {
+        "id": 13,
+        "first_name": "Dosi",
+        "email": "dchettoec@amazon.co.jp",
+        "ip_address": "86.185.29.102"
+      }, {
+        "id": 14,
+        "first_name": "Goddart",
+        "email": "gjuliend@oracle.com",
+        "ip_address": "32.223.158.216"
+      }, {
+        "id": 15,
+        "first_name": "Torrin",
+        "email": "tslarkee@stanford.edu",
+        "ip_address": "160.213.185.101"
+      }]
+}

@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+###
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+yarn sever-json
+yarn start
 
-## Available Scripts
+###
 
-In the project directory, you can run:
+1. Query Key
 
-### `npm start`
+- From V4, Query keys have to be an Array at the top level,
+  and can be as simple as an Array with a single string,
+  or as complex as an array of many strings and nested objects
+- tjdodo blog: I don't believe that storing all your Query Keys globally in /src/utils/queryKeys.ts will make things better.
+  I keep my Query Keys next to their respective queries, co-located in a feature directory.
+  ->>> so the actual Query Functions as well as Query Keys will stay local.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. React Query Devtools
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- initialIsOpen={false} -> not open devtool be default
+- By default, React Query Devtools are not imported and used when process.env.NODE_ENV === 'production'
 
-### `npm test`
+3. Query Cache
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- In traditional fetching, the "loading..." always appear
+- By default, every query result will be cached 5 minutes
+- However, React Query knows that the data might updated so the cache might not contains
+  the latest data. So the background will refresh and trigger for the same query and if
+  the fetch is successful, data will be updated in the UI
+  Because the isLoading = false => React Query needs another flags to refetching ->
+  isFetching
+- Console.log isLoading, isFetching
+- Config cache time:
 
-### `npm run build`
+4. Stale time
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Cache time helps us reduce number of network request for data doesnt change to often
+- For example, VM list not change often, it is ok if user see stale data (old data) for a while,
+  and we will use the cache result without refresh in the background
+  ------>staleTime -> fresh() in devtool will remain in to staleTime
+- By default, staleTime = 0
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Dependent Queries
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Dependent (or serial) queries depend on previous ones to finish before they can execute.
+  To achieve this, it's as easy as using the enabled option to tell a query when it is ready to run
 
-### `npm run eject`
+6. Query from Cache
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+7. Paginated Query
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- By setting keepPreviousData to true we get a few new things:
+  The data from the last successful fetch available while new data is being requested, even though the query key has changed.
+  When the new data arrives, the previous data is seamlessly swapped to show the new data.
+  isPreviousData is made available to know what data the query is currently providing you
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+8. Mutation
+   useQuery is declarative, useMutation is imperative
+   useQuery mostly run automatically
+   usMutation must to be invoke by Mutate or MutateAsync
+   mutate doesn't return anything, while mutateAsync returns a Promise containing the result of the mutation
+   To get screen up to date, after mutate, call queryClient.invalidateQueries([])
